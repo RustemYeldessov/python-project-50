@@ -6,9 +6,15 @@ def main():
     parser.add_argument('first_file', type=str)
     parser.add_argument('second_file', type=str)
 
+    parser.add_argument(
+        '-f', '--format',
+        dest='format',
+        type=str,
+        help='Set format of output'
+    )
+
     args = parser.parse_args()
-    print(args.first_file)
-    print(args.second_file)
+    print(args)
 
 if __name__ == '__main__':
     main()
