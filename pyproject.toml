@@ -9,13 +9,16 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []
 
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.7.1",
+    "pytest>=8.3.3",
+    "pytest-cov>=5.0.0",
+]
+
 [tool.poetry.dependencies]
 python = "^3.10"
 prompt = "^0.4.1"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
 
 [tool.poetry]
 name = "gendiff"
@@ -23,8 +26,12 @@ version = "0.1.0"
 description = "Compares two configuration files and shows a difference."
 authors = ["Rustem Yeldessov <eldesov1997@gmail.com>"]
 
-[tool.hatch.build.targets.wheel]
-packages = ["gendiff"]
-
 [project.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["gendiff"]
