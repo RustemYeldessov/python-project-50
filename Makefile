@@ -10,4 +10,6 @@ install:
 gendiff:
 	uv run gendiff
 
+lint:
+	uv run ruff check gendiff
 .PHONY: install test lint selfcheck check build
