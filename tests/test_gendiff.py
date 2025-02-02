@@ -1,9 +1,10 @@
 import unittest
 from gendiff.scripts.gendiff import main
 from gendiff.scripts.gendiff import generate_diff
+from gendiff.scripts.get_format import formatted
 
 
-def test_gendiff() -> dict:
+def test_gendiff():
 
     json1 = {
         "host": "hexlet.io",
@@ -20,7 +21,7 @@ def test_gendiff() -> dict:
 
     expected_result = {
         "- follow": False,
-        "host": "hexlet.io",
+        "  host": "hexlet.io",
         "- proxy": "123.234.53.22",
         "- timeout": 50,
         "+ timeout": 20,
@@ -28,4 +29,5 @@ def test_gendiff() -> dict:
     }
 
     result = generate_diff(json1, json2)
-    assert result == expected_result, f"Expected {expected_result}, but got {result}"
+    formatted_expected_result = formatted(expected_result)
+    assert result == formatted_expected_result, f"Expected {formatted_expected_result}, but got {result}"
