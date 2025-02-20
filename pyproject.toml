@@ -7,7 +7,7 @@ version = "0.1.0"
 description = "Compares two configuration files and shows a difference."
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = ["pyyaml (>=6.0.2,<7.0.0)"]
 
 [tool.uv]
 dev-dependencies = [
@@ -17,7 +17,7 @@ dev-dependencies = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.13"
 prompt = "^0.4.1"
 
 [tool.poetry]
