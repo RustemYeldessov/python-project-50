@@ -20,11 +20,12 @@ def parse_args():
     return parser.parse_args()
 
 def load_file(file_path):
+    file_path_str = str(file_path)
     try:
-        with open(file_path, 'r') as file:
-            if file_path.endswith('.json'):
+        with open(file_path_str, 'r') as file:
+            if file_path_str.endswith('.json'):
                 return json.load(file)
-            elif file_path.endswith(('.yml', '.yaml')):
+            elif file_path_str.endswith(('.yml', '.yaml')):
                 return yaml.safe_load(file)
             else:
                 raise ValueError(f"Неизвестный формат файла: {file_path}")

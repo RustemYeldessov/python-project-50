@@ -1,43 +1,65 @@
-def plain(diff, key_path):
-
+def plain(diff, key_path=''):
+    result = []
     sorted_keys = sorted(diff.keys(), key=lambda k: k[2:] if k.startswith(('- ', '+ ')) else k)
-    result = ''
+    processed_keys = set()
 
     for key in sorted_keys:
         value = diff[key]
-        clean_key = key[2:]
+        clean_key = key[2:] if key.startswith(('- ', '+ ')) else key
+        new_path = f"{key_path}.{clean_key}" if key_path else clean_key
 
-        is_added = f"+ {clean_key}" in diff
-        is_removed = f"- {clean_key}" in diff
-        is_changed = not key.startswith('+ ') and not key.startswith('- ')
-
-        key_path = ''
+        if new_path in processed_keys:
+            continue
 
         if isinstance(value, dict):
-            if f"+ {clean_key}" in sorted_keys and not f"- {clean_key}" in sorted_keys:
-                key_path += f'{key_path}{key}.'
-                result += plain(value, key_path='')
-            elif f"- {clean_key}" in sorted_keys and not f"+ {clean_key}" in sorted_keys:
-                result += f"Property '{key[2:]}' was removed\n"
-            elif is_changed:
-                key_path += f'{key_path}{key}.'
-                result += plain(value, key_path='')
-        else:
-            if f"+ {clean_key}" in sorted_keys and f"- {clean_key}" not in sorted_keys:
-                key_path = f'{key_path}{key}'
-                result += f"Property '{key_path} was added with value: {value}\n"
-            elif f"- {clean_key}" in sorted_keys and f"+ {clean_key}" not in sorted_keys:
-                key_path = f'{key_path}{key}'
-                result += f"Property '{key_path} was removed\n"
-            elif f"+ {clean_key}" in sorted_keys and f"- {clean_key}" in sorted_keys:
-
+            if f"+ {clean_key}" in diff and f"- {clean_key}" in diff:
                 old_value = diff[f"- {clean_key}"]
                 new_value = diff[f"+ {clean_key}"]
+                result.append(
+                    f"Property '{new_path}' was updated. From {format_value(old_value)} to {format_value(new_value)}"
+                )
+                processed_keys.add(new_path)
 
-                key_path = f'{key_path}{key}'
-                result += f"Property '{key_path} was updated. From {old_value} to {new_value}\n"
+            elif key.startswith('+ '):
+                result.append(f"Property '{new_path}' was added with value: [complex value]")
+                processed_keys.add(new_path)
+
+            elif key.startswith('- '):
+                result.append(f"Property '{new_path}' was removed")
+                processed_keys.add(new_path)
+
             else:
-                result += 'Fuck yourself motherfucker\n'
+                result.append(plain(value, new_path))
 
-    print(result)
-    return result
+        else:
+            if f"+ {clean_key}" in diff and f"- {clean_key}" in diff:
+                old_value = diff[f"- {clean_key}"]
+                new_value = diff[f"+ {clean_key}"]
+                result.append(
+                    f"Property '{new_path}' was updated. From {format_value(old_value)} to {format_value(new_value)}"
+                )
+                processed_keys.add(new_path)
+            elif key.startswith('+ '):
+                result.append(
+                    f"Property '{new_path}' was added with value: {format_value(value)}"
+                )
+                processed_keys.add(new_path)
+
+            elif key.startswith('- '):
+                result.append(f"Property '{new_path}' was removed")
+                processed_keys.add(new_path)
+
+    return '\n'.join(result)
+
+
+def format_value(value):
+    if isinstance(value, dict):
+        return "[complex value]"
+    elif isinstance(value, str):
+        return f"'{value}'"
+    elif value is None:
+        return "null"
+    elif isinstance(value, bool):
+        return str(value).lower()
+    else:
+        return value
