@@ -2,7 +2,7 @@ def stylish(diff, depth=0):
     indent = ' ' * (depth * 4)
     result = ['{']
 
-    sorted_keys = sorted(diff.keys(), key=lambda k: k[2:] if k.startswith(('- ', '+ ', '  ')) else k)
+    sorted_keys = sorted(diff.keys(), key=lambda k: k[2:] if k.startswith(('- ', '+ ')) else k)
 
     for key in sorted_keys:
         value = diff[key]

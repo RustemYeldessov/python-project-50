@@ -2,6 +2,7 @@ import yaml
 import argparse
 import json
 from gendiff.formatters.stylish import stylish
+from gendiff.formatters.plain import plain
 
 
 def parse_args():
@@ -41,10 +42,13 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
     diff = get_difference(data1, data2)
 
     formatters = {
-        'stylish': stylish
+        'stylish': stylish,
+        'plain': plain
     }
+    if format_name not in formatters:
+        raise ValueError(f"Unknown fomat: {format_name}")
 
-    formatter = formatters.get(format_name, stylish)
+    formatter = formatters[format_name]
     return formatter(diff)
 
 
