@@ -1,6 +1,8 @@
 import yaml
 import argparse
 import json
+
+from gendiff.formatters.json import json_formatter
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
 
@@ -44,7 +46,8 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
 
     formatters = {
         'stylish': stylish,
-        'plain': plain
+        'plain': plain,
+        'json': json_formatter
     }
     if format_name not in formatters:
         raise ValueError(f"Unknown fomat: {format_name}")
