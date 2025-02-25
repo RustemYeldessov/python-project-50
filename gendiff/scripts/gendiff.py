@@ -1,4 +1,4 @@
-from gendiff.gendiff_logic import generate_diff, parse_args
+from gendiff.gendiff import generate_diff, parse_args
 
 
 def main():
