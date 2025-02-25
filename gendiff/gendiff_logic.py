@@ -1,14 +1,17 @@
-import yaml
 import argparse
 import json
 
+import yaml
+
 from gendiff.formatters.json import json_formatter
-from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
+from gendiff.formatters.stylish import stylish
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
+    parser = argparse.ArgumentParser(
+        description='Compares two configuration files and shows a difference.'
+    )
 
     parser.add_argument('first_file', type=str)
     parser.add_argument('second_file', type=str)
@@ -20,6 +23,7 @@ def parse_args():
         help='Set format of output'
     )
     return parser.parse_args()
+
 
 def load_file(file_path):
     file_path_str = str(file_path)
@@ -37,6 +41,7 @@ def load_file(file_path):
     except (json.JSONDecodeError, yaml.YAMLError) as e:
         print(f"Ошибка: не удалось загрузить файл {file_path}: {e}")
         exit(1)
+
 
 def generate_diff(file_path1, file_path2, format_name='stylish'):
     data1 = load_file(file_path1)

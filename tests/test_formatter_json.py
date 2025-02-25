@@ -1,5 +1,7 @@
 import pytest
+
 from gendiff.formatters.json import json_formatter
+
 
 @pytest.fixture
 def diff():

@@ -1,6 +1,9 @@
 import json
+
 import pytest
+
 from gendiff.gendiff_logic import generate_diff
+
 
 @pytest.fixture
 def file1():

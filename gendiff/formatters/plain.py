@@ -1,6 +1,8 @@
 def plain(diff, key_path=''):
     result = []
-    sorted_keys = sorted(diff.keys(), key=lambda k: k[2:] if k.startswith(('- ', '+ ')) else k)
+    sorted_keys = sorted(
+        diff.keys(), key=lambda k: k[2:] if k.startswith(('- ', '+ ')) else k
+    )
     processed_keys = set()
 
     for key in sorted_keys:
@@ -16,12 +18,14 @@ def plain(diff, key_path=''):
                 old_value = diff[f"- {clean_key}"]
                 new_value = diff[f"+ {clean_key}"]
                 result.append(
-                    f"Property '{new_path}' was updated. From {format_value(old_value)} to {format_value(new_value)}"
+                    f"Property '{new_path}' was updated. From "
+                    f"{format_value(old_value)} to {format_value(new_value)}"
                 )
                 processed_keys.add(new_path)
 
             elif key.startswith('+ '):
-                result.append(f"Property '{new_path}' was added with value: [complex value]")
+                result.append(f"Property '{new_path}' "
+                              f"was added with value: [complex value]")
                 processed_keys.add(new_path)
 
             elif key.startswith('- '):
@@ -36,12 +40,14 @@ def plain(diff, key_path=''):
                 old_value = diff[f"- {clean_key}"]
                 new_value = diff[f"+ {clean_key}"]
                 result.append(
-                    f"Property '{new_path}' was updated. From {format_value(old_value)} to {format_value(new_value)}"
+                    f"Property '{new_path}' was updated. From "
+                    f"{format_value(old_value)} to {format_value(new_value)}"
                 )
                 processed_keys.add(new_path)
             elif key.startswith('+ '):
                 result.append(
-                    f"Property '{new_path}' was added with value: {format_value(value)}"
+                    f"Property '{new_path}' "
+                    f"was added with value: {format_value(value)}"
                 )
                 processed_keys.add(new_path)
 
