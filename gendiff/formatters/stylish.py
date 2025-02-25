@@ -37,7 +37,7 @@ def stylish(diff, depth=0):
                 )
 
     result.append(indent + '}')
-    result = [line.rstrip() for line in result]
+    # result = [line.rstrip() for line in result]
     return '\n'.join(result)
 
 
