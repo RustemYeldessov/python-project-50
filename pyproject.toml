@@ -21,7 +21,7 @@ python = "^3.13"
 prompt = "^0.4.1"
 
 [tool.poetry]
-name = "gendiff"
+name = "hexlet-code"
 version = "0.1.0"
 description = "Compares two configuration files and shows a difference."
 authors = ["Rustem Yeldessov <eldesov1997@gmail.com>"]
