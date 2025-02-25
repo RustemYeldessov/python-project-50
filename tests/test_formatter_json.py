@@ -50,6 +50,7 @@ def diff():
         }
     }
 
+
 def test_json_formatter(diff):
     result = json_formatter(diff)
     expected_result = '''{

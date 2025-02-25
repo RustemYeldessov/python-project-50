@@ -34,6 +34,7 @@ def file1():
         }
     }
 
+
 @pytest.fixture
 def file2():
     return {
@@ -68,6 +69,7 @@ def file2():
         }
     }
 
+
 @pytest.fixture
 def expected_result():
     return """
@@ -84,9 +86,9 @@ Property 'group2' was removed
 Property 'group3' was added with value: [complex value]
 """
 
+
 @pytest.fixture
 def create_temp_files(tmpdir, file1, file2):
-    # Создаём временные файлы
     file1_path = tmpdir.join("file1.json")
     file2_path = tmpdir.join("file2.json")
 
@@ -97,6 +99,7 @@ def create_temp_files(tmpdir, file1, file2):
         json.dump(file2, f2)
 
     return file1_path, file2_path
+
 
 def test_generate_diff_with_plain(create_temp_files, expected_result):
     file1_path, file2_path = create_temp_files

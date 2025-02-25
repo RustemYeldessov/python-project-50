@@ -34,6 +34,7 @@ def file1():
         }
     }
 
+
 @pytest.fixture
 def file2():
     return {
@@ -67,6 +68,7 @@ def file2():
             "fee": 100500
         }
     }
+
 
 @pytest.fixture
 def expected_result():
@@ -114,6 +116,7 @@ def expected_result():
         fee: 100500
     }
 }"""
+
 
 def test_generate_diff(file1, file2, expected_result):
     result = generate_diff("gendiff/file1.json", "gendiff/file2.json")
