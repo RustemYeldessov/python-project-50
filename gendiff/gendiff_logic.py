@@ -55,7 +55,7 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
         'json': json_formatter
     }
     if format_name not in formatters:
-        raise ValueError(f"Unknown fomat: {format_name}")
+        raise ValueError(f"Unknown format: {format_name}")
 
     formatter = formatters[format_name]
     return formatter(diff)

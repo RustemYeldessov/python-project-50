@@ -16,21 +16,5 @@
     "nest": {
       "key": "value"
     }
-  },
-  "group2": {
-    "abc": 12345,
-    "deep": {
-      "id": 45
-    }
-  },
-  "group4": {
-    "default": null,
-    "foo": 0,
-    "isNested": false,
-    "nest": {
-      "bar": null,
-      "isNested": true
-    },
-    "type": "bas"
   }
 }

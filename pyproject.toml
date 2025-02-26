@@ -27,7 +27,7 @@ description = "Compares two configuration files and shows a difference."
 authors = ["Rustem Yeldessov <eldesov1997@gmail.com>"]
 
 [project.scripts]
-gendiff = "gendiff.scripts.gendiff:main"
+gendiff = "gendiff.gendiff_logic:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -37,4 +37,4 @@ build-backend = "hatchling.build"
 packages = ["gendiff"]
 
 [tool.poetry.scripts]
-gendiff = 'gendiff.scripts.gendiff:main'
+gendiff = "gendiff.gendiff_logic:main"

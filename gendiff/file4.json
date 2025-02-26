@@ -21,24 +21,5 @@
     "baz": "bars",
     "foo": "bar",
     "nest": "str"
-  },
-  "group3": {
-    "deep": {
-      "id": {
-        "number": 45
-      }
-    },
-    "fee": 100500
-  },
-  "group4": {
-    "default": "",
-    "foo": null,
-    "isNested": "none",
-    "key": false,
-    "nest": {
-      "bar": 0
-    },
-    "someKey": true,
-    "type": "bar"
   }
 }
