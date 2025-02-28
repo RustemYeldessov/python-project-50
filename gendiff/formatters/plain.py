@@ -19,7 +19,8 @@ def plain(diff, key_path=''):
             old_value = format_value(item['old_value'])
             new_value = format_value(item['new_value'])
             result.append(
-                f"Property '{new_path}' was updated. From {old_value} to {new_value}"
+                f"Property '{new_path}' was updated. "
+                f"From {old_value} to {new_value}"
             )
 
     return '\n'.join(filter(None, result))

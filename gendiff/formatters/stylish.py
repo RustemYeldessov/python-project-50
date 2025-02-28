@@ -25,10 +25,12 @@ def stylish(diff, depth=0):
             )
         elif item_type == 'changed':
             result.append(
-                f"{indent}  - {key}: {format_value(item['old_value'], depth + 1)}"
+                f"{indent}  - {key}: "
+                f"{format_value(item['old_value'], depth + 1)}"
             )
             result.append(
-                f"{indent}  + {key}: {format_value(item['new_value'], depth + 1)}"
+                f"{indent}  + {key}: "
+                f"{format_value(item['new_value'], depth + 1)}"
             )
 
     result.append(indent + '}')
