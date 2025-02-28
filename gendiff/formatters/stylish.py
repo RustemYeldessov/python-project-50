@@ -2,48 +2,35 @@ def stylish(diff, depth=0):
     indent = ' ' * (depth * 4)
     result = ['{']
 
-    sorted_keys = sorted(
-        diff.keys(), key=lambda k: k[2:] if k.startswith(('- ', '+ ')) else k
-    )
+    for item in diff:
+        key = item['key']
+        item_type = item['type']
+        value = item.get('value')
 
-    for key in sorted_keys:
-        value = diff[key]
-        is_added_or_removed = key.startswith(('+ ', '- '))
-        clean_key = key[2:] if is_added_or_removed else key
-
-        if isinstance(value, dict):
-            if is_added_or_removed:
-                result.append(f"{indent}  {key}: {{")
-                sub_indent = indent + " " * 4
-                for sub_key, sub_value in value.items():
-                    formatted_value = format_value(sub_value, depth + 2)
-                    result.append(
-                        f"{sub_indent}    {sub_key}: {formatted_value}"
-                    )
-                result.append(f"{indent}    }}")
-
-            else:
-                result.append(
-                    f"{indent}    {clean_key}: {stylish(value, depth + 1)}"
-                )
-        else:
-            if key.startswith(('+ ', '- ')):
-                result.append(
-                    f"{indent}  {key}: {format_value(value, depth + 1)}"
-                )
-            else:
-                result.append(
-                    f"{indent}    {key}: {format_value(value, depth + 1)}"
-                )
+        if item_type == 'nested':
+            result.append(f"{indent}    {key}: {stylish(item['children'], depth + 1)}")
+        elif item_type == 'unchanged':
+            result.append(f"{indent}    {key}: {format_value(value, depth + 1)}")
+        elif item_type == 'added':
+            result.append(f"{indent}  + {key}: {format_value(value, depth + 1)}")
+        elif item_type == 'deleted':
+            result.append(f"{indent}  - {key}: {format_value(value, depth + 1)}")
+        elif item_type == 'changed':
+            result.append(f"{indent}  - {key}: {format_value(item['old_value'], depth + 1)}")
+            result.append(f"{indent}  + {key}: {format_value(item['new_value'], depth + 1)}")
 
     result.append(indent + '}')
-    # result = [line.rstrip() for line in result]
     return '\n'.join(result)
 
 
 def format_value(value, depth):
+    indent = ' ' * ((depth) * 4)
     if isinstance(value, dict):
-        return stylish(value, depth)
+        lines = ['{']
+        for k, v in value.items():
+            lines.append(f"{indent}    {k}: {format_value(v, depth + 1)}")
+        lines.append(indent + '}')
+        return '\n'.join(lines)
     elif value is None:
         return 'null'
     elif isinstance(value, bool):

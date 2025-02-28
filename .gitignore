@@ -1,2 +1,12 @@
-.venv
+.venv/
 dist/
+.coverage
+.idea
+coverage.xml
+gendiff-h.cast
+gendiff.cast
+gendiff_json_yaml.cast
+json.cast
+hello.py
+plain.cast
+pycache

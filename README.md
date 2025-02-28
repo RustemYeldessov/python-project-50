@@ -78,9 +78,10 @@
 
 ### Основная команда
 
-    uv run gendiff gendiff/file3.json gendiff/file4.json
+    uv run gendiff tests/fixtures/file3.json tests/fixtures/file4.json
 
-[![asciicast](https://asciinema.org/a/u26yjPYgUT1bVwM0j4JFZd72w.svg)](https://asciinema.org/a/u26yjPYgUT1bVwM0j4JFZd72w)
+Пример запуска команды: https://asciinema.org/a/toPgRsXcfvqpLTbzndwupJ3he
+
 
 Программа сравнит два файла форматов JSON или YAML, выведя различия в стандартном формате.
 
@@ -90,7 +91,7 @@
 
 Выведет справку по использованию утилиты:
 
-[![asciicast](https://asciinema.org/a/i6VWNYmCSo5RWDylFMj2a448Y.svg)](https://asciinema.org/a/i6VWNYmCSo5RWDylFMj2a448Y)
+Пример запуска команды: https://asciinema.org/a/i6VWNYmCSo5RWDylFMj2a448Y
 
 
 ### Форматы вывода
@@ -105,15 +106,15 @@
 
 **Формат plain**
 
-    uv run gendiff -f plain gendiff/file3.json gendiff/file4.json
+    uv run gendiff -f plain tests/fixtures/file3.json tests/fixtures/file4.json
 
-[![asciicast](https://asciinema.org/a/WCcyAeJgksUc4QnRNdMlc97mV.svg)](https://asciinema.org/a/WCcyAeJgksUc4QnRNdMlc97mV)
+Пример запуска команды: https://asciinema.org/a/ABfHxgknyolsYDoPe2OqvqqR4
 
 **Формат JSON**
 
-    uv run gendiff -f json gendiff/file3.json gendiff/file4.json
+    uv run gendiff -f json tests/fixtures/file3.json tests/fixtures/file4.json
 
-[![asciicast](https://asciinema.org/a/XMjeTZHut7Gc0jizUwiZEeanq.svg)](https://asciinema.org/a/XMjeTZHut7Gc0jizUwiZEeanq)
+Пример запуска команды: https://asciinema.org/a/RJSH67RqMCiiK2CVnMjslpESs
 
 ## Тестирование
 
