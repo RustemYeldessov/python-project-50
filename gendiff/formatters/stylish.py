@@ -8,16 +8,28 @@ def stylish(diff, depth=0):
         value = item.get('value')
 
         if item_type == 'nested':
-            result.append(f"{indent}    {key}: {stylish(item['children'], depth + 1)}")
+            result.append(
+                f"{indent}    {key}: {stylish(item['children'], depth + 1)}"
+            )
         elif item_type == 'unchanged':
-            result.append(f"{indent}    {key}: {format_value(value, depth + 1)}")
+            result.append(
+                f"{indent}    {key}: {format_value(value, depth + 1)}"
+            )
         elif item_type == 'added':
-            result.append(f"{indent}  + {key}: {format_value(value, depth + 1)}")
+            result.append(
+                f"{indent}  + {key}: {format_value(value, depth + 1)}"
+            )
         elif item_type == 'deleted':
-            result.append(f"{indent}  - {key}: {format_value(value, depth + 1)}")
+            result.append(
+                f"{indent}  - {key}: {format_value(value, depth + 1)}"
+            )
         elif item_type == 'changed':
-            result.append(f"{indent}  - {key}: {format_value(item['old_value'], depth + 1)}")
-            result.append(f"{indent}  + {key}: {format_value(item['new_value'], depth + 1)}")
+            result.append(
+                f"{indent}  - {key}: {format_value(item['old_value'], depth + 1)}"
+            )
+            result.append(
+                f"{indent}  + {key}: {format_value(item['new_value'], depth + 1)}"
+            )
 
     result.append(indent + '}')
     return '\n'.join(result)

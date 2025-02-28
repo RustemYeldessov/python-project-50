@@ -10,13 +10,17 @@ def plain(diff, key_path=''):
             result.append(plain(item['children'], new_path))
         elif item_type == 'added':
             value = format_value(item['value'])
-            result.append(f"Property '{new_path}' was added with value: {value}")
+            result.append(
+                f"Property '{new_path}' was added with value: {value}"
+            )
         elif item_type == 'deleted':
             result.append(f"Property '{new_path}' was removed")
         elif item_type == 'changed':
             old_value = format_value(item['old_value'])
             new_value = format_value(item['new_value'])
-            result.append(f"Property '{new_path}' was updated. From {old_value} to {new_value}")
+            result.append(
+                f"Property '{new_path}' was updated. From {old_value} to {new_value}"
+            )
 
     return '\n'.join(filter(None, result))
 

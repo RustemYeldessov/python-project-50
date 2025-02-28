@@ -118,5 +118,7 @@ def expected_result():
 
 
 def test_generate_diff(file1, file2, expected_result):
-    result = generate_diff("tests/fixtures/file1.json", "tests/fixtures/file2.json")
+    result = generate_diff(
+        "tests/fixtures/file1.json", "tests/fixtures/file2.json"
+    )
     assert result.strip() == expected_result.strip()
