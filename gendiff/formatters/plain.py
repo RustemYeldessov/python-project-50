@@ -9,15 +9,15 @@ def plain(diff, key_path=''):
         if item_type == 'nested':
             result.append(plain(item['children'], new_path))
         elif item_type == 'added':
-            value = format_value(item['value'])
+            value = get_str(item['value'])
             result.append(
                 f"Property '{new_path}' was added with value: {value}"
             )
         elif item_type == 'deleted':
             result.append(f"Property '{new_path}' was removed")
         elif item_type == 'changed':
-            old_value = format_value(item['old_value'])
-            new_value = format_value(item['new_value'])
+            old_value = get_str(item['old_value'])
+            new_value = get_str(item['new_value'])
             result.append(
                 f"Property '{new_path}' was updated. "
                 f"From {old_value} to {new_value}"
@@ -26,7 +26,7 @@ def plain(diff, key_path=''):
     return '\n'.join(filter(None, result))
 
 
-def format_value(value):
+def get_str(value):
     if isinstance(value, dict):
         return "[complex value]"
     elif isinstance(value, str):

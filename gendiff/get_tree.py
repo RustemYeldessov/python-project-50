@@ -1,4 +1,4 @@
-def get_difference(data1, data2):
+def get_tree(data1, data2):
     result = []
     all_keys = sorted(set(data1.keys()) | set(data2.keys()))
 
@@ -10,7 +10,7 @@ def get_difference(data1, data2):
             result.append({
                 'key': key,
                 'type': 'nested',
-                'children': get_difference(value1, value2)
+                'children': get_tree(value1, value2)
             })
         elif key in data1 and key in data2:
             if value1 != value2:

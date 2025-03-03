@@ -1,6 +1,5 @@
 import pytest
 
-
 from gendiff.gendiff_logic import generate_diff
 
 

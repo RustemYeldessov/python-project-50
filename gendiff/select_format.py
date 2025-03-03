@@ -4,12 +4,12 @@ from gendiff.formatters.stylish import stylish
 
 
 def get_formatter(format_name):
-    formatters = {
-        'stylish': stylish,
-        'plain': plain,
-        'json': json_formatter
-    }
-    if format_name not in formatters:
+    if format_name == 'stylish':
+        return stylish
+    elif format_name == 'plain':
+        return plain
+    elif format_name == 'json':
+        return json_formatter
+    else:
         raise ValueError(f"Unknown format: {format_name}")
 
-    return formatters[format_name]
