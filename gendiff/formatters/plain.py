@@ -26,7 +26,7 @@ def plain(diff, key_path=''):
     return '\n'.join(filter(None, result))
 
 
-def get_str(value):
+def to_str(value):
     if isinstance(value, dict):
         return "[complex value]"
     elif isinstance(value, str):
