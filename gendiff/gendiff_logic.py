@@ -9,5 +9,5 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
 
     diff = get_tree(data1, data2)
 
-    formatter = get_formatter(format_name)
-    return formatter(diff)
+    # formatter = get_formatter(format_name)
+    return get_formatter(format_name, diff)
