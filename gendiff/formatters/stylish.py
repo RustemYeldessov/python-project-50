@@ -13,36 +13,36 @@ def stylish(diff, depth=0):
             )
         elif item_type == 'unchanged':
             result.append(
-                f"{indent}    {key}: {format_value(value, depth + 1)}"
+                f"{indent}    {key}: {to_str(value, depth + 1)}"
             )
         elif item_type == 'added':
             result.append(
-                f"{indent}  + {key}: {format_value(value, depth + 1)}"
+                f"{indent}  + {key}: {to_str(value, depth + 1)}"
             )
         elif item_type == 'deleted':
             result.append(
-                f"{indent}  - {key}: {format_value(value, depth + 1)}"
+                f"{indent}  - {key}: {to_str(value, depth + 1)}"
             )
         elif item_type == 'changed':
             result.append(
                 f"{indent}  - {key}: "
-                f"{format_value(item['old_value'], depth + 1)}"
+                f"{to_str(item['old_value'], depth + 1)}"
             )
             result.append(
                 f"{indent}  + {key}: "
-                f"{format_value(item['new_value'], depth + 1)}"
+                f"{to_str(item['new_value'], depth + 1)}"
             )
 
     result.append(indent + '}')
     return '\n'.join(result)
 
 
-def format_value(value, depth):
+def to_str(value, depth):
     indent = ' ' * ((depth) * 4)
     if isinstance(value, dict):
         lines = ['{']
         for k, v in value.items():
-            lines.append(f"{indent}    {k}: {format_value(v, depth + 1)}")
+            lines.append(f"{indent}    {k}: {to_str(v, depth + 1)}")
         lines.append(indent + '}')
         return '\n'.join(lines)
     elif value is None:
